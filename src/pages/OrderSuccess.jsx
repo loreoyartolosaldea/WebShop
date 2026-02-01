@@ -4,11 +4,15 @@ import '../App.css';
 
 const OrderSuccess = () => {
   return (
-    <div className="loading-message">
-      <h2>Eskerrik asko, zure eskaera ondo jaso da!</h2>
-      <p>Laster zurekin harremanetan jarriko gara xehetasunak emateko.</p>
-      <Link to="/" className="add-to-cart-btn" style={{textDecoration: 'none', marginTop: '2rem', display: 'inline-block'}}>
+    <div className="cart-page" style={{textAlign: 'center'}}>
+      <h2 style={{color: '#2ecc71'}}>✓ Eskerrik asko!</h2>
+      <p>Zure eskaera ondo jaso da. Laster prozesatuko dugu.</p>
+      <p>Zure eskaeren egoera "Eskaerak" atalean kontsulta dezakezu.</p>
+      <Link to="/" className="add-to-cart-btn" style={{textDecoration: 'none', display: 'inline-block', marginTop: '1rem', marginRight: '1rem'}}>
         Dendara Itzuli
+      </Link>
+      <Link to="/orders" className="checkout-btn" style={{textDecoration: 'none', display: 'inline-block', marginTop: '1rem'}}>
+        Nire Eskaerak Ikusi
       </Link>
     </div>
   );

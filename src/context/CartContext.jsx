@@ -2,13 +2,13 @@ import React, { createContext, useState, useContext } from 'react';
 
 export const CartContext = createContext();
 
-// Hook pertsonalizatua context-a errazago erabiltzeko
 export const useCart = () => {
   return useContext(CartContext);
 };
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]); // <-- ESKAERAK GORDETZEKO STATE BERRIA
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -23,14 +23,22 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const clearCart = () => {
-    setCart([]);
+  const placeOrder = () => {
+    const newOrder = {
+      id: new Date().getTime(), // Eskaerari ID uniko bat eman
+      date: new Date(),
+      items: cart,
+      total: cart.reduce((total, item) => total + item.prezioa * item.quantity, 0),
+    };
+    setOrders((prevOrders) => [...prevOrders, newOrder]);
+    setCart([]); // Saskia hustu
   };
 
   const value = {
     cart,
+    orders, // <-- Eskaerak eskuragarri jarri
     addToCart,
-    clearCart, // <-- FUNTZIO BERRIA ESPORTATU
+    placeOrder, // <-- Funtzio berria
   };
 
   return (

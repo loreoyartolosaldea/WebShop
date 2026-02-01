@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import '../App.css';
 
 const Cart = () => {
-  const { cart, clearCart } = useCart();
+  const { cart, placeOrder } = useCart(); // <-- placeOrder erabili
   const navigate = useNavigate();
 
   if (cart.length === 0) {
@@ -12,11 +12,7 @@ const Cart = () => {
   }
 
   const handleCheckout = () => {
-    // Etorkizunean hemen ordainketa-pasabidearekin konektatuko litzateke
-    console.log("Eskaera prozesatzen...", cart);
-    // 1. Saskia hustu
-    clearCart();
-    // 2. Berrespen-orrira bideratu
+    placeOrder(); // Eskaera gorde eta saskia hustu
     navigate('/order-success');
   };
 
