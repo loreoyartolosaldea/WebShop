@@ -9,7 +9,6 @@ export default defineConfig(({ mode }) => {
     ? {
         host: '0.0.0.0',
         port: 9000,
-        // HMR (Hot Module Replacement) desgaitzen dugu arazoak konpontzeko
         hmr: false,
       }
     : {};
@@ -17,5 +16,9 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: serverConfig,
+    // Atal hau gehitu dugu Render-eko errorea konpontzeko
+    preview: {
+      allowedHosts: ['webshop-bexy.onrender.com']
+    }
   };
 });
