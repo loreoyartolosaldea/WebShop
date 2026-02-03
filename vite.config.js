@@ -10,15 +10,19 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
         port: 9000,
         hmr: false,
+        allowedHosts: true, // Zerbitzari moduan onartzeko
       }
-    : {};
+    : {
+        allowedHosts: true,
+      };
 
   return {
     plugins: [react()],
     server: serverConfig,
-    // Atal hau gehitu dugu Render-eko errorea konpontzeko
     preview: {
-      allowedHosts: ['webshop-bexy.onrender.com']
+      allowedHosts: true, // Render-ek erabiltzen duen 'preview' moduan onartzeko
+      port: 10000,       // Render-ek askotan portu hau erabiltzen du
+      host: true         // Kanpoko konexioak onartzeko
     }
   };
 });
